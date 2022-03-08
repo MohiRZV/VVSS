@@ -1,5 +1,3 @@
 
 =
 Inventory.iml,0\a\0af9949bf5541778be1f206b3e1e34397326e8d6
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
