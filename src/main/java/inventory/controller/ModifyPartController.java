@@ -206,7 +206,7 @@ public class ModifyPartController implements Initializable, Controller {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Adding Part!");
             alert.setHeaderText("Error");
-            alert.setContentText("Form contains blank field.");
+            alert.setContentText("Form contains blank field or the provided data type is wrong.");
             alert.showAndWait();
         }
 
