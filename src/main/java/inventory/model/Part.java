@@ -84,24 +84,19 @@ public abstract class Part {
      * @return 
      */
     public static String isValidPart(String name, double price, int inStock, int min, int max, String errorMessage) {
-        if(name.equals("")) {
-            errorMessage += "A name has not been entered. ";
+        if(name == null || name.equals("")) {
+            errorMessage += "name is not a string\n";
         }
         if(price < 0.01) {
-            errorMessage += "The price must be greater than 0. ";
-        }
-        if(inStock < 1) {
-            errorMessage += "Inventory level must be greater than 0. ";
+            errorMessage += "The price must be greater than 0.\n";
         }
         if(min > max) {
-            errorMessage += "The Min value must be less than the Max value. ";
+            errorMessage += "The Min value must be less than the Max value.\n";
         }
-        if(inStock < min) {
-            errorMessage += "Inventory level is lower than minimum value. ";
+        if(inStock < min || inStock > max){
+            errorMessage+= "inStock not between min and max\n";
         }
-        if(inStock > max) {
-            errorMessage += "Inventory level is higher than the maximum value. ";
-        }
+
         return errorMessage;
     }
 

@@ -12,13 +12,22 @@ public class InventoryService {
         this.repo =repo;
     }
 
-    public void addInhousePart(String name, double price, int inStock, int min, int  max, int partDynamicValue){
+    public void addInhousePart(String name, double price, int inStock, int min, int  max, int partDynamicValue) throws Exception {
         InhousePart inhousePart = new InhousePart(repo.getAutoPartId(), name, price, inStock, min, max, partDynamicValue);
+        String err = Part.isValidPart(name, price, inStock, min, max, "");
+        if (err != ""){
+            throw new Exception(err);
+        }
+
         repo.addPart(inhousePart);
     }
 
-    public void addOutsourcePart(String name, double price, int inStock, int min, int  max, String partDynamicValue){
+    public void addOutsourcePart(String name, double price, int inStock, int min, int  max, String partDynamicValue) throws Exception {
         OutsourcedPart outsourcedPart = new OutsourcedPart(repo.getAutoPartId(), name, price, inStock, min, max, partDynamicValue);
+        String err = Part.isValidPart(name, price, inStock, min, max, "");
+        if (err != ""){
+            throw new Exception(err);
+        }
         repo.addPart(outsourcedPart);
     }
 
