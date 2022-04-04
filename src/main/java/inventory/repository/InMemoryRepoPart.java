@@ -40,10 +40,13 @@ public class InMemoryRepoPart {
      * @return
      */
     public Part lookupPart(String searchItem) {
-        if (searchItem.isEmpty())
+       if (searchItem.isEmpty())
             return null;
-        for(Part p:allParts) {
-            if(p.getName().contains(searchItem) || (p.getPartId()+"").equals(searchItem)) return p;
+       for(Part p:allParts) {
+            if(p.getName().contains(searchItem))
+                return p;
+            if((p.getPartId()+"").equals(searchItem))
+                return p;
         }
         return null;
     }
