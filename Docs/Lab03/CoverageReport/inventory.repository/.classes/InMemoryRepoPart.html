@@ -1,0 +1,175 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: InMemoryRepoPart</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">inventory.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: InMemoryRepoPart (inventory.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">InMemoryRepoPart</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    44.4%
+  </span>
+  <span class="absValue">
+    (4/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    65.4%
+  </span>
+  <span class="absValue">
+    (17/ 26)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package inventory.repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import inventory.model.Part;
+<i>4</i>&nbsp;import inventory.model.Product;
+<i>5</i>&nbsp;import javafx.collections.FXCollections;
+<i>6</i>&nbsp;import javafx.collections.ObservableList;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public class InMemoryRepoPart {
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;    // Declare fields
+<i>11</i>&nbsp;    private ObservableList&lt;Part&gt; allParts;
+<i>12</i>&nbsp;    private int autoPartId;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;
+<b class="fc"><i>15</i>&nbsp;    public InMemoryRepoPart(){</b>
+<b class="fc"><i>16</i>&nbsp;        this.allParts= FXCollections.observableArrayList();</b>
+<b class="fc"><i>17</i>&nbsp;        this.autoPartId=0;</b>
+<b class="fc"><i>18</i>&nbsp;    }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    // Declare methods
+<i>21</i>&nbsp;    /**
+<i>22</i>&nbsp;     * Add new part to observable list allParts
+<i>23</i>&nbsp;     * @param part
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    public void addPart(Part part) {
+<b class="nc"><i>26</i>&nbsp;        allParts.add(part);</b>
+<b class="nc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    /**
+<i>30</i>&nbsp;     * Removes part passed as parameter from allParts
+<i>31</i>&nbsp;     * @param part
+<i>32</i>&nbsp;     */
+<i>33</i>&nbsp;    public void deletePart(Part part) {
+<b class="nc"><i>34</i>&nbsp;        allParts.remove(part);</b>
+<b class="nc"><i>35</i>&nbsp;    }</b>
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    /**
+<i>38</i>&nbsp;     * Accepts search parameter and if an ID or name matches input, that part is returned
+<i>39</i>&nbsp;     * @param searchItem
+<i>40</i>&nbsp;     * @return
+<i>41</i>&nbsp;     */
+<i>42</i>&nbsp;    public Part lookupPart(String searchItem) {
+<b class="fc"><i>43</i>&nbsp;       if (searchItem.isEmpty())</b>
+<b class="fc"><i>44</i>&nbsp;            return null;</b>
+<b class="fc"><i>45</i>&nbsp;       for(Part p:allParts) {</b>
+<b class="fc"><i>46</i>&nbsp;            if(p.getName().contains(searchItem))</b>
+<b class="fc"><i>47</i>&nbsp;                return p;</b>
+<b class="fc"><i>48</i>&nbsp;            if((p.getPartId()+&quot;&quot;).equals(searchItem))</b>
+<b class="fc"><i>49</i>&nbsp;                return p;</b>
+<b class="fc"><i>50</i>&nbsp;        }</b>
+<b class="fc"><i>51</i>&nbsp;        return null;</b>
+<i>52</i>&nbsp;    }
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    /**
+<i>55</i>&nbsp;     * Update part at given index
+<i>56</i>&nbsp;     * @param index
+<i>57</i>&nbsp;     * @param part
+<i>58</i>&nbsp;     */
+<i>59</i>&nbsp;    public void updatePart(int index, Part part) {
+<b class="nc"><i>60</i>&nbsp;        allParts.set(index, part);</b>
+<b class="nc"><i>61</i>&nbsp;    }</b>
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    /**
+<i>64</i>&nbsp;     * Getter for allParts Observable List
+<i>65</i>&nbsp;     * @return
+<i>66</i>&nbsp;     */
+<i>67</i>&nbsp;    public ObservableList&lt;Part&gt; getAllParts() {
+<b class="nc"><i>68</i>&nbsp;        return allParts;</b>
+<i>69</i>&nbsp;    }
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    /**
+<i>72</i>&nbsp;     *
+<i>73</i>&nbsp;     * @param list
+<i>74</i>&nbsp;     */
+<i>75</i>&nbsp;    public void setAllParts(ObservableList&lt;Part&gt; list) {
+<b class="fc"><i>76</i>&nbsp;        allParts=list;</b>
+<b class="fc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    /**
+<i>80</i>&nbsp;     * Method for incrementing part ID to be used to automatically
+<i>81</i>&nbsp;     * assign ID numbers to parts
+<i>82</i>&nbsp;     * @return
+<i>83</i>&nbsp;     */
+<i>84</i>&nbsp;    public int getAutoPartId() {
+<b class="nc"><i>85</i>&nbsp;        autoPartId++;</b>
+<b class="nc"><i>86</i>&nbsp;        return autoPartId;</b>
+<i>87</i>&nbsp;    }
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;    public void setAutoPartId(int id){
+<b class="fc"><i>90</i>&nbsp;        autoPartId=id;</b>
+<b class="fc"><i>91</i>&nbsp;    }</b>
+<i>92</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-04-04 23:23</div>
+</div>
+</body>
+</html>
