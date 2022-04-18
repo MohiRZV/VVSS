@@ -22,7 +22,7 @@ public class InMemoryRepoPart {
      * Add new part to observable list allParts
      * @param part
      */
-    public void addPart(Part part) {
+    public void addPart(Part part){
         allParts.add(part);
     }
 

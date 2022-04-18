@@ -161,7 +161,11 @@ public class InventoryFileRepository {
 		}
 	}
 
-	public void addPart(Part part){
+	public void addPart(Part part) throws Exception {
+		String err = Part.isValidPart(part.getName(), part.getPrice(), part.getInStock(), part.getMin(), part.getMax(), "");
+		if (err != ""){
+			throw new Exception(err);
+		}
 		inMemoryRepoPart.addPart(part);
 		writeAll();
 	}

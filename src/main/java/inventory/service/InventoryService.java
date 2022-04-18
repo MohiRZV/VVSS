@@ -14,11 +14,6 @@ public class InventoryService {
 
     public void addInhousePart(String name, double price, int inStock, int min, int  max, int partDynamicValue) throws Exception {
         InhousePart inhousePart = new InhousePart(repo.getAutoPartId(), name, price, inStock, min, max, partDynamicValue);
-        String err = Part.isValidPart(name, price, inStock, min, max, "");
-        if (err != ""){
-            throw new Exception(err);
-        }
-
         repo.addPart(inhousePart);
     }
 
