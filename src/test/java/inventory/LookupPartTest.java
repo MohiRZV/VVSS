@@ -39,9 +39,9 @@ public class LookupPartTest {
         }
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"1"})
-    void lookupPart_elementIdMatchesQuery_returnElement(String keyword) {
+    @Test
+    void lookupPart_elementIdMatchesQuery_returnElement() {
+        String keyword = "1";
         try {
             Part part = repo.lookupPart(keyword);
 
