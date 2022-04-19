@@ -1,6 +1,7 @@
 package inventory.service;
 
 import inventory.model.InhousePart;
+import inventory.model.PartValidator;
 import inventory.repository.InMemoryRepoPart;
 import inventory.repository.InventoryFileRepository;
 import org.junit.jupiter.api.AfterAll;
@@ -24,7 +25,7 @@ class InventoryServiceTest {
     static private final int partDynamicValue = 16;
     @BeforeAll
     static void setUp(){
-        service = new InventoryService(new InventoryFileRepository());
+        service = new InventoryService(new InventoryFileRepository(new PartValidator()));
     }
 
     @ParameterizedTest

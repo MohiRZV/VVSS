@@ -1,6 +1,7 @@
 package inventory.repository;
 
 import inventory.model.Part;
+import inventory.model.PartValidator;
 import inventory.model.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,9 +11,11 @@ public class InMemoryRepoPart {
     // Declare fields
     private ObservableList<Part> allParts;
     private int autoPartId;
+    private PartValidator partValidator;
 
 
-    public InMemoryRepoPart(){
+    public InMemoryRepoPart(PartValidator partValidator){
+        this.partValidator = partValidator;
         this.allParts= FXCollections.observableArrayList();
         this.autoPartId=0;
     }
@@ -22,7 +25,8 @@ public class InMemoryRepoPart {
      * Add new part to observable list allParts
      * @param part
      */
-    public void addPart(Part part){
+    public void addPart(Part part) throws Exception {
+        partValidator.validate(part);
         allParts.add(part);
     }
 

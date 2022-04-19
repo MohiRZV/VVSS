@@ -1,5 +1,6 @@
 package inventory;
 
+import inventory.model.PartValidator;
 import inventory.repository.InventoryFileRepository;
 import inventory.service.InventoryService;
 import inventory.controller.MainScreenController;
@@ -14,7 +15,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        InventoryFileRepository repo= new InventoryFileRepository();
+        PartValidator validator = new PartValidator();
+        InventoryFileRepository repo= new InventoryFileRepository(validator);
         InventoryService service = new InventoryService(repo);
         System.out.println(service.getAllProducts());
         System.out.println(service.getAllParts());

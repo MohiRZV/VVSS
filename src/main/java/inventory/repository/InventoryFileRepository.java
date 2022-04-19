@@ -13,9 +13,11 @@ public class InventoryFileRepository {
 	private static String filename = "data/items.txt";
 	private InMemoryRepoPart inMemoryRepoPart;
 	private InMemoryRepoProduct inMemoryRepoProduct;
+	private PartValidator partValidator;
 
-	public InventoryFileRepository(){
-		this.inMemoryRepoPart=new InMemoryRepoPart();
+	public InventoryFileRepository(PartValidator partValidator){
+		this.partValidator = partValidator;
+		this.inMemoryRepoPart=new InMemoryRepoPart(partValidator);
 		this.inMemoryRepoProduct=new InMemoryRepoProduct();
 		readParts();
 		readProducts();
@@ -162,10 +164,6 @@ public class InventoryFileRepository {
 	}
 
 	public void addPart(Part part) throws Exception {
-		String err = Part.isValidPart(part.getName(), part.getPrice(), part.getInStock(), part.getMin(), part.getMax(), "");
-		if (err != ""){
-			throw new Exception(err);
-		}
 		inMemoryRepoPart.addPart(part);
 		writeAll();
 	}

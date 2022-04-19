@@ -1,6 +1,7 @@
 package inventory;
 
 import inventory.model.Part;
+import inventory.model.PartValidator;
 import inventory.repository.InventoryFileRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ public class LookupPartTest {
 
     @BeforeAll
     static void setUp(){
-        repo = new InventoryFileRepository();
+        repo = new InventoryFileRepository(new PartValidator());
     }
 
     @Test
