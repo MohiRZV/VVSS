@@ -35,17 +35,21 @@ public class ServiceRepoTest {
     public void test_add_part() throws Exception{
         Mockito.doNothing().when(partValidator).validate(any());
 
-        assert inventoryService.getAllParts().size() == 0;
+        int initialSize = inventoryService.getAllParts().size();
 
         inventoryService.addInhousePart("name", 20, 2, 1, 3, 2);
-        assert inventoryService.getAllParts().size() == 1;
-        assert inventoryFileRepository.getAllParts().size() == 1;
+        assert inventoryService.getAllParts().size() == 1 + initialSize;
+        assert inventoryFileRepository.getAllParts().size() == 1 + initialSize;
         Mockito.verify(partValidator, (times(1))).validate(any());
 
         inventoryService.addOutsourcePart("name", 20, 2, 1, 3, "2");
-        assert inventoryService.getAllParts().size() == 2;
-        assert inventoryFileRepository.getAllParts().size() == 2;
+        assert inventoryService.getAllParts().size() == 2 + initialSize;
+        assert inventoryFileRepository.getAllParts().size() == 2 + initialSize;
         Mockito.verify(partValidator, (times(2))).validate(any());
+    }
+
+    @Test
+    public void test_delete_part() throws Exception{
 
     }
 
