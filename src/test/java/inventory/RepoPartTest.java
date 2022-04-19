@@ -10,7 +10,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.Test;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.mockito.Mockito.mock;
@@ -20,7 +22,7 @@ public class RepoPartTest {
     private InMemoryRepoPart repo;
     private PartValidator partValidator;
     private Part part;
-    @Before
+    @BeforeEach
     public void setUp(){
         partValidator = mock(PartValidator.class);
         repo = new InMemoryRepoPart(partValidator);

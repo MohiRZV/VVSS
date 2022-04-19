@@ -2,7 +2,8 @@ package inventory;
 
 import inventory.model.InhousePart;
 import inventory.model.Part;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 
 public class PartTest {
 

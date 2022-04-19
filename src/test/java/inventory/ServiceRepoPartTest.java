@@ -7,7 +7,8 @@ import inventory.model.PartValidator;
 import inventory.repository.InventoryFileRepository;
 import inventory.service.InventoryService;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -19,7 +20,7 @@ public class ServiceRepoPartTest {private InventoryFileRepository inventoryFileR
     private InventoryService inventoryService;
 
 
-    @Before
+    @BeforeEach
     public void setUp(){
         partValidator = mock(PartValidator.class);
         inventoryFileRepository = new InventoryFileRepository(partValidator);

@@ -8,7 +8,8 @@ import inventory.repository.InventoryFileRepository;
 import inventory.service.InventoryService;
 import javafx.collections.FXCollections;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
@@ -21,7 +22,7 @@ public class ServiceRepoTest {
     private Part p1;
     private Part p2;
 
-    @Before
+    @BeforeEach
     public void setUp(){
         partValidator = mock(PartValidator.class);
         inventoryFileRepository = new InventoryFileRepository(partValidator);
