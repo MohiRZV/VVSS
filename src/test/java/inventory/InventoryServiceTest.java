@@ -1,9 +1,10 @@
-package inventory.service;
+package inventory;
 
 import inventory.model.InhousePart;
 import inventory.model.PartValidator;
 import inventory.repository.InMemoryRepoPart;
 import inventory.repository.InventoryFileRepository;
+import inventory.service.InventoryService;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
