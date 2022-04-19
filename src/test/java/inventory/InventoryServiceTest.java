@@ -29,9 +29,9 @@ class InventoryServiceTest {
         service = new InventoryService(new InventoryFileRepository(new PartValidator()));
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"X", "Chestie"})
-    void addPart_validName(String name) {
+    @Test
+    void addPart_validName() {
+        String name = "X";
         inStock = 15;
         try {
             service.addInhousePart(name, price, inStock, min, max, partDynamicValue);
@@ -43,10 +43,9 @@ class InventoryServiceTest {
         }
     }
 
-    @ParameterizedTest
-    @EmptySource
-    @NullSource
-    void addPart_invalidName(String name){
+    @Test
+    void addPart_invalidName(){
+        String name = null;
         inStock = 15;
         try {
             service.addInhousePart(name, price, inStock, min, max, partDynamicValue);
@@ -56,11 +55,10 @@ class InventoryServiceTest {
         }
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {max})
-    void addPart_validInStock(int inStock){
+    @Test
+    void addPart_validInStock(){
         name = "Chestie";
-
+        inStock = max;
         try {
             service.addInhousePart(name, price, inStock, min, max, partDynamicValue);
             InhousePart p = (InhousePart) service.getAllParts().get(service.getAllParts().size() - 1);
@@ -71,11 +69,10 @@ class InventoryServiceTest {
         }
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {min -1, 70})
-    void addPart_invalidInStock(int inStock){
+    @Test
+    void addPart_invalidInStock(){
         name = "Chestie";
-
+        int inStock = -1;
         try {
             service.addInhousePart(name, price, inStock, min, max, partDynamicValue);
             assert(false);
