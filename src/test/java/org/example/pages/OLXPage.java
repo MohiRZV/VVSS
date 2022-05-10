@@ -27,17 +27,41 @@ public class OLXPage extends PageObject {
     @FindBy(id = "onetrust-accept-btn-handler")
     private WebElementFacade acceptCookiesButton;
 
-    @FindBy(className = "css-1povu0j")
+    @FindBy(xpath = "//button[@data-cy='post-new-ad-button']")
     private WebElementFacade adaugaAnuntButton;
 
     @FindBy(className = "css-6wwl3n-BaseStyles")
     private WebElementFacade amInteles;
 
-    @FindBy(className = "css-rfuzkc-BaseStyles")
+    @FindBy(xpath = "//button[@data-cy='ads-reposting-dismiss']")
     private WebElementFacade ignoraChestie;
 
     @FindBy(className = "onetrust-pc-dark-filter ot-fade-in")
     private WebElementFacade cookieFade;
+
+    @FindBy(className = "css-kfy9sk")
+    private WebElementFacade butonImobiliare;
+
+    @FindBy(className = "css-hncutm")
+    private WebElementFacade dropDownCategorie;
+
+    @FindBy(xpath="//button[@data-categoryid='619']")
+    private WebElementFacade categorieServicii;
+
+    @FindBy(xpath="//li[@data-categoryid='901']")
+    private WebElementFacade categorieServiciiPC;
+
+    @FindBy(xpath = "//textarea[@data-testid='posting-title']")
+    private WebElementFacade titluAnuntText;
+
+    @FindBy(xpath = "//textarea[@data-testid='posting-description-text-area']")
+    private WebElementFacade descriereAnuntText;
+
+    @FindBy(xpath = "//button[@data-testid='submit-btn']")
+    private WebElementFacade publicaAnuntButton;
+
+    @FindBy(xpath = "//div[@data-testid='private_business_private_unactive']")
+    private WebElementFacade persoanaFizica;
 
     public void pressContulMeu() {
         setImplicitTimeout(10, SECONDS);
@@ -69,6 +93,7 @@ public class OLXPage extends PageObject {
     }
 
     public void pressAdaugaAnunt() {
+        adaugaAnuntButton.waitUntilEnabled();
         adaugaAnuntButton.click();
     }
 
@@ -77,7 +102,39 @@ public class OLXPage extends PageObject {
     }
 
     public void ignoraChestie() {
+        ignoraChestie.waitUntilClickable();
         ignoraChestie.click();
     }
 
+    public void fillTitleField(String title){
+        titluAnuntText.waitUntilClickable();
+        titluAnuntText.sendKeys(title);
+    }
+
+    public void fillDescriptionField(String description){
+        descriereAnuntText.sendKeys(description);
+    }
+
+    public void publicaAnunt(){
+        publicaAnuntButton.click();
+    }
+
+    public void deschideCategorii(){
+        dropDownCategorie.click();
+    }
+
+    public void alegeCateogrieServicii(){
+        categorieServicii.click();
+    }
+
+    public void alegeCategorieServiciiPC(){
+        categorieServiciiPC.click();
+    }
+
+    public void persoanaFizica(){
+        persoanaFizica.click();
+    }
+
+
 }
+
