@@ -56,6 +56,26 @@ public class UserSteps {
     public void inAsteptare() {
         olxPage.inAsteptare();
     }
+    @Step
+    public void fillTitleField(String title){olxPage.fillTitleField(title);}
+
+    @Step
+    public void fillDescriptionField(String title){olxPage.fillDescriptionField(title);}
+
+    @Step
+    public void publicaAnunt(){olxPage.publicaAnunt();}
+
+    @Step
+    public void deschideCategorii(){olxPage.deschideCategorii();}
+
+    @Step
+    public void alegeCategorieServicii(){olxPage.alegeCateogrieServicii();}
+
+    @Step
+    public void alegeCategorieServiciiPC(){olxPage.alegeCategorieServiciiPC();}
+
+    @Step
+    public void persoanaFizica(){olxPage.persoanaFizica();}
 
     @Step
     public void active(){

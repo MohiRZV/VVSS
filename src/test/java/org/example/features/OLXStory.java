@@ -81,7 +81,7 @@ public class OLXStory extends PageObject {
     }
 
     @Test
-    public void open_olx_main_page_select_contul_meu_fill_credentials_press_login_should_open_user_page() {
+    public void open_olx_main_page_select_contul_meu_fill_credentials_press_login_should_open_user_page() throws InterruptedException {
         user.is_the_home_page();
         user.acceptCookies();
         user.enter_login_page();
@@ -120,5 +120,13 @@ public class OLXStory extends PageObject {
             assert true;
         }
 
+        user.fillTitleField("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        user.deschideCategorii();
+        user.alegeCategorieServicii();
+        user.alegeCategorieServiciiPC();
+        user.fillDescriptionField("Buna ziua aceasta este o descriere imi pare bine sa va cunosc nu ma simt bine deloc");
+        user.persoanaFizica();
+        user.publicaAnunt();
+        Thread.sleep(10000);
     }
 }
