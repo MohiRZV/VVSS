@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="org.example.features.OLXStory" skipped="0" tests="1" time="7.78" timestamp="2022-05-10 01:25:42"><testcase classname="org.example.features.OLXStory" name="Test login"><failure type="java.lang.AssertionError"/><system-err>null&#13;
+org.example.features.OLXStory.test_login(OLXStory.java:43)&#13;
+</system-err></testcase></testsuite>
