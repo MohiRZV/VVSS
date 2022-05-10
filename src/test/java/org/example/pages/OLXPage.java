@@ -39,6 +39,28 @@ public class OLXPage extends PageObject {
     @FindBy(className = "onetrust-pc-dark-filter ot-fade-in")
     private WebElementFacade cookieFade;
 
+    @FindBy(className = "css-13srz5t")
+    private WebElementFacade logoutButton;
+
+    @FindBy(xpath = "/html/body/div[2]/div[1]/div[2]/div/div[1]/div[1]/div/button[2]")
+    private WebElementFacade inAsteptareButton;
+
+    @FindBy(xpath = "/html/body/div[2]/div[1]/div[2]/div/div[3]/div/div[2]/div/div[2]/div[2]/ul/li[5]/button")
+    private WebElementFacade dezactiveazaButtonActive;
+
+    @FindBy(xpath = "/html/body/div[2]/div[1]/div[2]/div/div[3]/div/div[2]/div/div[2]/div[2]/ul/li[2]/button")
+    private WebElementFacade dezactiveazaButtonInAsteptare;
+
+    @FindBy(xpath = "/html/body/div[2]/div[1]/div[2]/div/div[1]/div[1]/div/button[1]")
+    private WebElementFacade activeButton;
+
+    @FindBy(xpath = "/html/body/div[2]/div[1]/div[2]/div/div[3]/div/div[2]/div/div[2]/div[2]/ul/div/div/div[2]/div[2]/button[2]")
+    private WebElementFacade sariPesteButton;
+
+
+    @FindBy(xpath = "/html/body/div[2]/div[1]/div[2]/div/div[3]/div/div[2]/div/div[2]/div[2]/ul/div/div/div[2]/div/button")
+    private WebElementFacade confirmareDezactivareButton;
+
     public void pressContulMeu() {
         setImplicitTimeout(10, SECONDS);
         contulMeu.click();
@@ -80,4 +102,29 @@ public class OLXPage extends PageObject {
         ignoraChestie.click();
     }
 
+//    public void logout() {
+//        setImplicitTimeout(10, SECONDS);
+//        logoutButton.waitUntilClickable();
+//        logoutButton.click();
+//        waitFor(ExpectedConditions.titleIs("OLX - Cumpără și vinde"));
+//        resetImplicitTimeout();
+//    }
+
+    public void inAsteptare() {
+        inAsteptareButton.click();
+    }
+
+    public void active(){
+        activeButton.click();
+    }
+
+    public void dezactiveazaAnunt() {
+        //dezactiveazaButtonActive.click();
+        if(sariPesteButton.isClickable()){
+            sariPesteButton.click();
+        }
+        if(confirmareDezactivareButton.isClickable()) {
+            confirmareDezactivareButton.click();
+        }
+    }
 }

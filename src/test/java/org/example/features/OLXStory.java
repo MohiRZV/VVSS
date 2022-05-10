@@ -14,9 +14,12 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 @RunWith(SerenityRunner.class)
 public class OLXStory extends PageObject {
@@ -88,5 +91,34 @@ public class OLXStory extends PageObject {
         user.ziCaAiInteles();
         user.ignoraChestie();
         user.pressAdaugaAnunt();
+
+        user.inAsteptare();
+        List<WebElement> button = webdriver.findElements(By.xpath("/html/body/div[2]/div[1]/div[2]/div/div[3]/div/div[2]/div/div[2]/div[2]/ul/li[2]/button"));
+        if (button.isEmpty()) {
+            user.active();
+            webdriver.findElement(By.xpath("/html/body/div[2]/div[1]/div[2]/div/div[3]/div/div[2]/div/div[2]/div[2]/ul/li[5]/button")).click();
+        }
+        else {
+            button.get(0).click();
+        }
+
+        user.dezactivezaAnunt();
+
+        //logout
+        WebElement ele = webdriver.findElement(By.xpath("/html/body/div[2]/header/div/div/div[2]/div[1]/a"));
+        Actions action = new Actions(webdriver);
+        action.moveToElement(ele);
+        WebElement subMenu = webdriver.findElement(By.xpath("/html/body/div[2]/header/div/div/div[2]/div[2]/ul[2]/li[3]/a"));
+        action.moveToElement(subMenu);
+        action.click().build().perform();
+
+        WebDriverWait wait = new WebDriverWait(webdriver, 10);
+        try {
+            wait.until(ExpectedConditions.titleIs("OLX - Cumpără și vinde"));
+            assert false;
+        }catch (TimeoutException ex){
+            assert true;
+        }
+
     }
 }

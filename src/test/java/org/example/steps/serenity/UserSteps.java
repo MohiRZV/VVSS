@@ -52,5 +52,18 @@ public class UserSteps {
         olxPage.ignoraChestie();
     }
 
+    @Step
+    public void inAsteptare() {
+        olxPage.inAsteptare();
+    }
 
+    @Step
+    public void active(){
+        olxPage.active();
+    }
+
+    @Step
+    public void dezactivezaAnunt() {
+        olxPage.dezactiveazaAnunt();
+    }
 }
