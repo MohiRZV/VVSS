@@ -1,6 +1,8 @@
 package org.example.features;
 
 import net.serenitybdd.core.annotations.findby.By;
+import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
@@ -9,11 +11,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(SerenityRunner.class)
-public class OLXStory {
+public class OLXStory extends PageObject {
     private final JsonDataProvider jsonDataProvider = new JsonDataProvider();
     @Before
     public void init() {
@@ -27,7 +33,7 @@ public class OLXStory {
     public UserSteps user;
     @Test
     public void test_login() throws InterruptedException {
-        webdriver.get("https://www.olx.ro/cont/?ref%5B0%5D%5Baction%5D=myaccount&ref%5B0%5D%5Bmethod%5D=pro");
+        webdriver.get("https://www.olx.ro/cont/");
         webdriver.manage().window().maximize();
         WebElement username=webdriver.findElement(By.id("userEmail"));
         WebElement password=webdriver.findElement(By.id("userPass"));
@@ -36,17 +42,21 @@ public class OLXStory {
         username.sendKeys(jsonDataProvider.getValue("email"));
         password.sendKeys(jsonDataProvider.getValue("password"));
         acceptCookies.click();
-        // nu merge fara because yes
-        Thread.sleep(100);
+        WebElementFacade fade = $(By.className("onetrust-pc-dark-filter ot-fade-in"));
+        fade.waitUntilNotVisible();
         login.click();
-        String actualUrl="https://www.olx.ro/cont/?ref%5B0%5D%5Baction%5D=myaccount&ref%5B0%5D%5Bmethod%5D=pro";
-        String expectedUrl= webdriver.getCurrentUrl();
-        Assert.assertEquals(expectedUrl,actualUrl);
+        WebDriverWait wait = new WebDriverWait(webdriver, 10);
+        try {
+            wait.until(ExpectedConditions.titleIs("Contul meu • OLX.ro"));
+            assert true;
+        }catch (TimeoutException ex){
+            assert false;
+        }
     }
 
     @Test
     public void test_login_invalid() throws InterruptedException {
-        webdriver.get("https://www.olx.ro/cont/?ref%5B0%5D%5Baction%5D=myaccount&ref%5B0%5D%5Bmethod%5D=pro");
+        webdriver.get("https://www.olx.ro/cont/");
         webdriver.manage().window().maximize();
         WebElement username=webdriver.findElement(By.id("userEmail"));
         WebElement password=webdriver.findElement(By.id("userPass"));
@@ -55,10 +65,16 @@ public class OLXStory {
         username.sendKeys(jsonDataProvider.getValue("email"));
         password.sendKeys(jsonDataProvider.getValue("password_invalid"));
         acceptCookies.click();
-        // nu merge fara because yes
-        Thread.sleep(100);
+        WebElementFacade fade = $(By.className("onetrust-pc-dark-filter ot-fade-in"));
+        fade.waitUntilNotVisible();
         login.click();
-        Assert.assertFalse(webdriver.findElements(By.id("fblogin")).isEmpty());
+        WebDriverWait wait = new WebDriverWait(webdriver, 10);
+        try {
+            wait.until(ExpectedConditions.titleIs("Contul meu • OLX.ro"));
+            assert false;
+        }catch (TimeoutException ex){
+            assert true;
+        }
     }
 
     @Test
@@ -69,9 +85,6 @@ public class OLXStory {
         user.fillUsername(jsonDataProvider.getValue("email"));
         user.fillPassword(jsonDataProvider.getValue("password"));
         user.pressLogin();
-        String expectedUrl="https://www.olx.ro/cont/?ref%5B0%5D%5Baction%5D=myaccount&ref%5B0%5D%5Bmethod%5D=pro";
-        String actualUrl= webdriver.getCurrentUrl();
-        Assert.assertEquals(expectedUrl,actualUrl);
         user.ziCaAiInteles();
         user.ignoraChestie();
         user.pressAdaugaAnunt();

@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="org.example.features.OLXStory" skipped="0" tests="1" time="32.34" timestamp="2022-05-09 11:15:52"><testcase classname="org.example.features.OLXStory" name="Open olx main page select contul meu fill credentials press login should open user page"/></testsuite>

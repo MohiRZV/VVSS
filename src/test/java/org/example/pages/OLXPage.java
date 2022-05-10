@@ -4,6 +4,10 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static java.time.temporal.ChronoUnit.SECONDS;
 
 @DefaultUrl("https://www.olx.ro/")
 public class OLXPage extends PageObject {
@@ -32,22 +36,28 @@ public class OLXPage extends PageObject {
     @FindBy(className = "css-rfuzkc-BaseStyles")
     private WebElementFacade ignoraChestie;
 
+    @FindBy(className = "onetrust-pc-dark-filter ot-fade-in")
+    private WebElementFacade cookieFade;
+
     public void pressContulMeu() {
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        setImplicitTimeout(10, SECONDS);
         contulMeu.click();
+        waitFor(ExpectedConditions.titleIs("OLX - Cumpără și vinde"));
     }
 
     public void acceptCookies() {
+        setImplicitTimeout(1, SECONDS);
         acceptCookiesButton.click();
+        cookieFade.waitUntilNotVisible();
+        resetImplicitTimeout();
     }
 
     public void pressLogin() {
+        setImplicitTimeout(10, SECONDS);
         loginButton.waitUntilClickable();
         loginButton.click();
+        waitFor(ExpectedConditions.titleIs("Anunturi Gratuite - Peste 4 milioane anunturi - OLX.ro"));
+        resetImplicitTimeout();
     }
 
     public void fillUsernameField(String username) {
@@ -59,11 +69,6 @@ public class OLXPage extends PageObject {
     }
 
     public void pressAdaugaAnunt() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         adaugaAnuntButton.click();
     }
 
@@ -72,11 +77,6 @@ public class OLXPage extends PageObject {
     }
 
     public void ignoraChestie() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         ignoraChestie.click();
     }
 
